@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { App } from './containers/App';
 
 ReactDOM.render(
-  <div>Swagger Editor Assignment</div>,
+  <App />,
   document.getElementById("root")
 );
