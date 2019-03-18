@@ -4,6 +4,7 @@
   "description": "Swagger Editor",
   "main": "src/index.ts",
   "scripts": {
+    "lint": "tslint --project .",
     "start": "webpack-dev-server"
   },
   "license": "UNLICENSED",
@@ -20,5 +21,8 @@
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.1"
+  },
+  "devDependencies": {
+    "tslint": "^5.14.0"
   }
 }
