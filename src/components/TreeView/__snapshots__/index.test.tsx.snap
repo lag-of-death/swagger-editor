@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TreeView rendering 1`] = `
+<ul>
+  <Leaf
+    key="swagger"
+    labelKey="swagger"
+    renderIssuesIndicators={[Function]}
+  />
+  <Branch
+    key="info"
+    labelKey="info"
+    render={[Function]}
+    renderIssuesIndicators={[Function]}
+  />
+  <Leaf
+    key="host"
+    labelKey="host"
+    renderIssuesIndicators={[Function]}
+  />
+  <Leaf
+    key="basePath"
+    labelKey="basePath"
+    renderIssuesIndicators={[Function]}
+  />
+  <Branch
+    key="tags"
+    labelKey="tags"
+    render={[Function]}
+    renderIssuesIndicators={[Function]}
+  />
+  <Branch
+    key="schemes"
+    labelKey="schemes"
+    render={[Function]}
+    renderIssuesIndicators={[Function]}
+  />
+  <Branch
+    key="paths"
+    labelKey="paths"
+    render={[Function]}
+    renderIssuesIndicators={[Function]}
+  />
+  <Branch
+    key="securityDefinitions"
+    labelKey="securityDefinitions"
+    render={[Function]}
+    renderIssuesIndicators={[Function]}
+  />
+  <Branch
+    key="definitions"
+    labelKey="definitions"
+    render={[Function]}
+    renderIssuesIndicators={[Function]}
+  />
+  <Branch
+    key="externalDocs"
+    labelKey="externalDocs"
+    render={[Function]}
+    renderIssuesIndicators={[Function]}
+  />
+  <Branch
+    key="parameters"
+    labelKey="parameters"
+    render={[Function]}
+    renderIssuesIndicators={[Function]}
+  />
+  <Branch
+    key="responses"
+    labelKey="responses"
+    render={[Function]}
+    renderIssuesIndicators={[Function]}
+  />
+</ul>
+`;

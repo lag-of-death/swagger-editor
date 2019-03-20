@@ -7,7 +7,7 @@
     "module": "commonjs",
     "target": "es5",
     "jsx": "react",
-    "types": ["node", "jest"]
+    "types": ["node", "jest", "enzyme"]
   },
   "include": [
     "./src/**/*"

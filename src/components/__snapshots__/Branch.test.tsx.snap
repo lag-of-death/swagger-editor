@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Branch rendering 1`] = `
+<li>
+  <figure>
+    <div />
+    <figcaption>
+      testLabelKey
+    </figcaption>
+    <ul />
+  </figure>
+</li>
+`;
