@@ -1,20 +1,17 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import { TreeView } from "../components/TreeView";
 import { diagnose } from "../util/linting";
 
-export class App extends React.Component<{}, { spec: any }> {
+import { ISpecPart } from "../components/TreeView/interfaces";
 
-  constructor(props: {}) {
-    super(props);
-    this.state = {spec: require("../../spec/petstore.oas2.json")};
-  }
+const App = ({spec}: { spec: ISpecPart }) =>
+  <TreeView
+    spec={spec}
+    diagnostics={diagnose(spec)}/>;
 
-  public render() {
-    return (
-      <TreeView
-        spec={this.state.spec}
-        diagnostics={diagnose(this.state.spec)}/>
-    );
-  }
-
-}
+export default connect((state) => {
+  return {
+    spec: state,
+  };
+})(App);

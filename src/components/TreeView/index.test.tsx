@@ -7,7 +7,7 @@ import { TreeView } from "./index";
 describe("TreeView", () => {
   test("rendering", () => {
     const component = shallow(
-      <TreeView spec={petstore}
+      <TreeView spec={petstore as any}
                 diagnostics={diagnose(petstore)}/>,
     );
 
