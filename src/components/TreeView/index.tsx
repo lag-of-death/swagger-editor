@@ -1,10 +1,15 @@
 import { IRuleResult } from "@stoplight/spectral";
 import * as React from "react";
+import styled from "styled-components";
 import Branch from "../Branch";
 import IssuesIndicators from "../IssuesIndicators";
 import Leaf from "../Leaf";
 import { getErrorsAndWarningsForPath, isObjectOrArray } from "./helpers";
 import { ISpecPart, ITreeViewProps } from "./interfaces";
+
+const TreeContainer = styled.ul`
+  padding: 6px;
+`;
 
 const composeTree = (diagnostics: IRuleResult[], specPart: ISpecPart, path: string[]): React.FunctionComponent[] => {
 
@@ -36,8 +41,8 @@ const composeTree = (diagnostics: IRuleResult[], specPart: ISpecPart, path: stri
 
 export function TreeView({spec, diagnostics}: ITreeViewProps) {
   return (
-    <ul>
+    <TreeContainer>
       {composeTree(diagnostics, spec, [])}
-    </ul>
+    </TreeContainer>
   );
 }

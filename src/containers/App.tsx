@@ -7,22 +7,89 @@ import { diagnose } from "../util/linting";
 
 type Event = { target: { value: string } };
 
+import styled from "styled-components";
+
+const boxShadow = "box-shadow: 2px 2px 2px black;";
+const borderRadius = "border-radius: 10px;";
+const border = "border: 6px solid black;";
+const padding = "padding: 6px;";
+
+const Errors = styled.div<{ issues: string }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: ${({issues}) => issues ? 1 : 0.1};
+  flex-grow: 0;
+  flex-shrink: 1;
+  ${padding}
+  flex-basis: 100px;
+  overflow: auto;
+  margin: 10px;
+  ${border}
+  ${borderRadius}
+  ${boxShadow}
+  word-break: break-all;
+`;
+
+const TextEditor = styled.textarea`
+  ${padding}
+  display: flex;
+  flex-grow: 20;
+  margin: 10px;
+  ${border}
+  ${borderRadius}
+  ${boxShadow}
+`;
+
+const Editor = styled.div`
+  display: flex;
+  flex-flow: column;
+  flex-grow: 10;
+  flex-shrink: 1;
+  flex-basis: 0;
+`;
+
+const Appz = styled.div`
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
+`;
+
+const TreeViewContainer = styled.div`
+  overflow: auto;
+  flex-grow: 5;
+  flex-shrink: 1;
+  flex-basis: 0;
+  margin: 10px;
+  ${border}
+  ${borderRadius}
+  ${boxShadow}
+`;
+
 const App = (
   {spec, issues, text, onChange}:
     { onChange: (evt: Event) => null, text: string, issues: { type: string, msg: string }, spec: ISpecPart },
 ) => {
   return (
-    <React.Fragment>
-      {issues ? <div>{issues.msg}</div> : null}
-      <textarea
-        rows={20}
-        cols={150}
-        value={text || JSON.stringify(spec)}
-        onChange={onChange}/>
-      <TreeView
-        spec={spec}
-        diagnostics={diagnose(spec)}/>
-    </React.Fragment>
+    <Appz>
+
+      <TreeViewContainer>
+        <TreeView
+          spec={spec}
+          diagnostics={diagnose(spec)}/>
+      </TreeViewContainer>
+
+      <Editor>
+        <Errors issues={issues.msg}>{
+          issues && issues.msg
+            ? issues.msg
+            : <div>CLICK ON A DOT TO LEARN ABOUT ISSUES...</div>
+        }</Errors>
+        <TextEditor
+          value={text || JSON.stringify(spec, null, 2)}
+          onChange={onChange}/>
+      </Editor>
+    </Appz>
 
   );
 };
