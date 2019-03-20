@@ -7,9 +7,13 @@ import { diagnose } from "../util/linting";
 
 type Event = { target: { value: string } };
 
-const App = ({spec, text, onChange}: { onChange: (evt: Event) => null, text: string, spec: ISpecPart }) => {
+const App = (
+  {spec, issues, text, onChange}:
+    { onChange: (evt: Event) => null, text: string, issues: { type: string, msg: string }, spec: ISpecPart },
+) => {
   return (
     <React.Fragment>
+      {issues ? <div>{issues.msg}</div> : null}
       <textarea
         rows={20}
         cols={150}
@@ -23,8 +27,9 @@ const App = ({spec, text, onChange}: { onChange: (evt: Event) => null, text: str
   );
 };
 
-export default connect((state: { spec: ISpecPart, text: string }) => {
+export default connect((state: { spec: ISpecPart, text: string, issues: { type: string, msg: string } }) => {
   return {
+    issues: state.issues,
     spec: state.spec,
     text: state.text,
   };

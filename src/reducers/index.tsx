@@ -1,5 +1,11 @@
-import { EDITOR_TEXT_CHANGE } from "../actions";
+import { DISPLAY_ISSUES, EDITOR_TEXT_CHANGE } from "../actions";
 import { ISpecPart } from "../components/TreeView/interfaces";
+
+interface IActionHandlers {
+  [key: string]: () => Store;
+}
+
+type Store = { spec: ISpecPart, text: string, issues?: { type: string, msg: string } };
 
 const handleTextChange = (spec: ISpecPart, payload: string) => {
   try {
@@ -21,13 +27,18 @@ const handleTextChange = (spec: ISpecPart, payload: string) => {
 
 const reducer = (
   {spec, text}: { spec: ISpecPart, text: string },
-  action: { type: string, payload?: string },
-): { spec: ISpecPart, text?: string } => {
-  return (action.type === EDITOR_TEXT_CHANGE)
-    ? handleTextChange(spec, action.payload)
-    : {
-      spec,
-    };
+  action: { type: string, payload?: any },
+): Store => {
+
+  const actions = {
+    [EDITOR_TEXT_CHANGE]: () => handleTextChange(spec, action.payload),
+    [DISPLAY_ISSUES]: () => ({issues: action.payload, spec, text}),
+  } as IActionHandlers;
+
+  const actionType = action.type;
+  const actionHandler = actions[actionType];
+
+  return actionHandler ? actionHandler() : {spec, text: "", issues: {type: "", msg: ""}};
 };
 
 export default reducer;
