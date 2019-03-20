@@ -6,5 +6,5 @@ export function diagnose(spec: object) {
   const spectral = new Spectral();
   spectral.addFunctions(oas2Functions());
   spectral.addRules(oas2Rules());
-  return spectral.run(spec).results;
+  return spectral.run(spec, {resolvedTarget: spec}).results;
 }
