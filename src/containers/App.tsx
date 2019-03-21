@@ -1,3 +1,4 @@
+import { IRuleResult } from "@stoplight/spectral";
 import * as React from "react";
 import { connect } from "react-redux";
 import { updateText } from "../actions";
@@ -6,19 +7,20 @@ import { ISpecPart } from "../components/TreeView/interfaces";
 import { diagnose } from "../util/linting";
 
 type Event = { target: { value: string } };
+type State = { spec: ISpecPart, text: string, issues: IRuleResult[] };
 
 import styled from "styled-components";
 
 const boxShadow = "box-shadow: 2px 2px 2px black;";
-const borderRadius = "border-radius: 10px;";
+const borderRadius = "border-radius: 6px;";
 const border = "border: 6px solid black;";
 const padding = "padding: 6px;";
 
-const Errors = styled.div<{ issues: string }>`
+const Errors = styled.div<{ hasIssues: boolean }>`
   display: flex;
   justify-content: center;
-  align-items: center;
-  opacity: ${({issues}) => issues ? 1 : 0.1};
+  align-items: ${({hasIssues}) => hasIssues ? "initial" : "center"};
+  opacity: ${({hasIssues}) => hasIssues ? 1 : 0.1};
   flex-grow: 0;
   flex-shrink: 1;
   ${padding}
@@ -28,7 +30,7 @@ const Errors = styled.div<{ issues: string }>`
   ${border}
   ${borderRadius}
   ${boxShadow}
-  word-break: break-all;
+  word-break: break-word;
 `;
 
 const TextEditor = styled.textarea`
@@ -68,8 +70,10 @@ const TreeViewContainer = styled.div`
 
 const App = (
   {spec, issues, text, onChange}:
-    { onChange: (evt: Event) => null, text: string, issues: { type: string, msg: string }, spec: ISpecPart },
+    { onChange: (evt: Event) => null, text: string, issues: IRuleResult[], spec: ISpecPart },
 ) => {
+  const hasIssues = !!issues.length;
+
   return (
     <Appz>
 
@@ -80,9 +84,9 @@ const App = (
       </TreeViewContainer>
 
       <Editor>
-        <Errors issues={issues.msg}>{
-          issues && issues.msg
-            ? issues.msg
+        <Errors hasIssues={hasIssues}>{
+          hasIssues
+            ? <div>{issues.map((msg: IRuleResult) => <div><b>{msg.path.join(".")}</b>: {msg.message}</div>)}</div>
             : <div>CLICK ON A DOT TO LEARN ABOUT ISSUES...</div>
         }</Errors>
         <TextEditor
@@ -94,7 +98,7 @@ const App = (
   );
 };
 
-export default connect((state: { spec: ISpecPart, text: string, issues: { type: string, msg: string } }) => {
+export default connect((state: State) => {
   return {
     issues: state.issues,
     spec: state.spec,
@@ -102,8 +106,8 @@ export default connect((state: { spec: ISpecPart, text: string, issues: { type: 
   };
 }, (dispatch) => {
   return {
-    onChange: (evt: Event) => {
-      dispatch(updateText(evt.target.value));
+    onChange: ({target: {value}}: Event) => {
+      dispatch(updateText(value));
     },
   };
 })(App);

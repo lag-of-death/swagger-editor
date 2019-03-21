@@ -1,3 +1,4 @@
+import { IRuleResult } from "@stoplight/spectral";
 import { DISPLAY_ISSUES, EDITOR_TEXT_CHANGE } from "../actions";
 import { ISpecPart } from "../components/TreeView/interfaces";
 
@@ -5,7 +6,7 @@ interface IActionHandlers {
   [key: string]: () => Store;
 }
 
-type Store = { spec: ISpecPart, text: string, issues?: { type: string, msg: string } };
+type Store = { spec: ISpecPart, text: string, issues?: IRuleResult[] };
 
 const handleTextChange = (spec: ISpecPart, payload: string) => {
   try {
@@ -38,7 +39,7 @@ const reducer = (
   const actionType = action.type;
   const actionHandler = actions[actionType];
 
-  return actionHandler ? actionHandler() : {spec, text: "", issues: {type: "", msg: ""}};
+  return actionHandler ? actionHandler() : {spec, text: "", issues: []};
 };
 
 export default reducer;

@@ -28,18 +28,18 @@ const Warnings = styled.button`
 interface IIssuesIndicatorsProps {
   warnings: IRuleResult[];
   errors: IRuleResult[];
-  onClick: (type: string, msg: string) => null;
+  onClick: (msg: IRuleResult[]) => null;
 }
 
 const IssuesIndicators = ({warnings, errors, onClick}: IIssuesIndicatorsProps) => {
   return (
     <React.Fragment>
       {errors.length
-        ? <Errors onClick={() => onClick("errors", JSON.stringify(errors))}/>
+        ? <Errors onClick={() => onClick(errors)}/>
         : null
       }
       {warnings.length
-        ? <Warnings onClick={() => onClick("warnings", JSON.stringify(warnings))}/>
+        ? <Warnings onClick={() => onClick(warnings)}/>
         : null
       }
     </React.Fragment>
@@ -48,8 +48,8 @@ const IssuesIndicators = ({warnings, errors, onClick}: IIssuesIndicatorsProps) =
 
 export default connect(() => ({}), (dispatch) => {
   return {
-    onClick: (issueType: string, msg: string) => {
-      dispatch(displayIssues(issueType, msg));
+    onClick: (msg: IRuleResult[]) => {
+      dispatch(displayIssues(msg));
     },
   };
 })(IssuesIndicators);
