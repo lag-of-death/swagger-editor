@@ -1,4 +1,3 @@
-import { IRuleResult } from "@stoplight/spectral";
 import * as React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
@@ -26,9 +25,9 @@ const Warnings = styled.button`
 `;
 
 interface IIssuesIndicatorsProps {
-  warnings: IRuleResult[];
-  errors: IRuleResult[];
-  onClick: (msg: IRuleResult[]) => null;
+  warnings: Array<{ message: string, path: string[] }>;
+  errors: Array<{ message: string, path: string[] }>;
+  onClick: (msg: Array<{ message: string, path: string[] }>) => null;
 }
 
 const IssuesIndicators = ({warnings, errors, onClick}: IIssuesIndicatorsProps) => {
@@ -48,7 +47,7 @@ const IssuesIndicators = ({warnings, errors, onClick}: IIssuesIndicatorsProps) =
 
 export default connect(() => ({}), (dispatch) => {
   return {
-    onClick: (msg: IRuleResult[]) => {
+    onClick: (msg: Array<{ message: string, path: string[] }>) => {
       dispatch(displayIssues(msg));
     },
   };

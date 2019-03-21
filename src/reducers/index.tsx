@@ -1,5 +1,5 @@
 import { IRuleResult } from "@stoplight/spectral";
-import { DISPLAY_ISSUES, EDITOR_TEXT_CHANGE } from "../actions";
+import { CHANGE_EDITOR_TEXT, DISPLAY_ISSUES } from "../actions";
 import { ISpecPart } from "../components/TreeView/interfaces";
 
 interface IActionHandlers {
@@ -27,7 +27,7 @@ const handleTextChange = (spec: ISpecPart, payload: string) => {
 };
 
 const actions = {
-  [EDITOR_TEXT_CHANGE]: (spec, payload) => handleTextChange(spec, payload),
+  [CHANGE_EDITOR_TEXT]: (spec, payload) => handleTextChange(spec, payload),
   [DISPLAY_ISSUES]: (spec, payload, text) => ({issues: payload, spec, text}),
 } as IActionHandlers;
 
