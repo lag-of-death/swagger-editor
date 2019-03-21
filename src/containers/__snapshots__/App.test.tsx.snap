@@ -1,5 +1,97 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`App onChange event handler 1`] = `
+<styled.div>
+  <styled.div>
+    <TreeView
+      diagnostics={
+        Array [
+          Object {
+            "message": "info.contact is not truthy",
+            "name": "info-contact",
+            "path": Array [
+              "info",
+              "contact",
+            ],
+            "severity": 40,
+            "severityLabel": "warn",
+            "summary": "Info object should contain \`contact\` object.",
+          },
+          Object {
+            "message": "info.description is not truthy",
+            "name": "info-description",
+            "path": Array [
+              "info",
+              "description",
+            ],
+            "severity": 40,
+            "severityLabel": "warn",
+            "summary": "OpenAPI object info \`description\` must be present and non-empty string.",
+          },
+          Object {
+            "message": "should have required property 'swagger'",
+            "name": "oas2-schema",
+            "path": Array [],
+            "severity": 50,
+            "severityLabel": "error",
+            "summary": "Validate structure of OpenAPIv2 specification.",
+          },
+          Object {
+            "message": "host is not truthy",
+            "name": "api-host",
+            "path": Array [
+              "host",
+            ],
+            "severity": 40,
+            "severityLabel": "warn",
+            "summary": "OpenAPI \`host\` must be present and non-empty string.",
+          },
+          Object {
+            "message": "schemes does not exist",
+            "name": "api-schemes",
+            "path": Array [
+              "schemes",
+            ],
+            "severity": 40,
+            "severityLabel": "warn",
+            "summary": "OpenAPI host \`schemes\` must be present and non-empty array.",
+          },
+        ]
+      }
+      spec={Object {}}
+    />
+  </styled.div>
+  <styled.div>
+    <Connect(Component) />
+    <styled.div>
+      JSON VALID
+    </styled.div>
+    <styled.textarea
+      onChange={
+        [MockFunction] {
+          "calls": Array [
+            Array [
+              Object {
+                "target": Object {
+                  "value": "value",
+                },
+              },
+            ],
+          ],
+          "results": Array [
+            Object {
+              "type": "return",
+              "value": undefined,
+            },
+          ],
+        }
+      }
+      value="some text"
+    />
+  </styled.div>
+</styled.div>
+`;
+
 exports[`App rendering 1`] = `
 <styled.div>
   <styled.div>
@@ -67,7 +159,7 @@ exports[`App rendering 1`] = `
       JSON VALID
     </styled.div>
     <styled.textarea
-      onChange={[Function]}
+      onChange={[MockFunction]}
       value="some text"
     />
   </styled.div>
