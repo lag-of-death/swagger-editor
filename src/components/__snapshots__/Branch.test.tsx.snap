@@ -3,10 +3,14 @@
 exports[`Branch rendering 1`] = `
 <li>
   <figure>
-    <div />
-    <figcaption>
-      testLabelKey
-    </figcaption>
+    <styled.div>
+      <figcaption>
+        testLabelKey
+      </figcaption>
+      <styled.div>
+        <div />
+      </styled.div>
+    </styled.div>
     <ul />
   </figure>
 </li>

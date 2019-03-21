@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TreeView rendering 1`] = `
-<ul>
+<styled.ul>
   <Leaf
     key="swagger"
     labelKey="swagger"
@@ -71,5 +71,5 @@ exports[`TreeView rendering 1`] = `
     render={[Function]}
     renderIssuesIndicators={[Function]}
   />
-</ul>
+</styled.ul>
 `;

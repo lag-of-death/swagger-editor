@@ -1,8 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Leaf rendering 1`] = `
-<li>
-  <div />
+<styled.li>
   testLabelKey
-</li>
+  <styled.div>
+    <div />
+  </styled.div>
+</styled.li>
 `;
