@@ -48,7 +48,7 @@ const TreeViewContainer = styled.div`
   ${boxShadow}
 `;
 
-const App = (
+export const App = (
   {spec, issues, text, onChange}:
     { onChange: (evt: Event) => null, text: string, issues: IRuleResult[], spec: ISpecPart },
 ) => {
