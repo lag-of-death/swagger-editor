@@ -30,7 +30,7 @@ interface IIssuesIndicatorsProps {
   onClick: (msg: Array<{ message: string, path: string[] }>) => null;
 }
 
-const IssuesIndicators = ({warnings, errors, onClick}: IIssuesIndicatorsProps) => {
+export const IssuesIndicators = ({warnings, errors, onClick}: IIssuesIndicatorsProps) => {
   return (
     <React.Fragment>
       {errors.length

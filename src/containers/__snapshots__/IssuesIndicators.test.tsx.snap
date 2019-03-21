@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IssuesIndicators event handler 1`] = `
+<Fragment>
+  <styled.button
+    onClick={[Function]}
+  />
+  <styled.button
+    onClick={[Function]}
+  />
+</Fragment>
+`;
+
+exports[`IssuesIndicators rendering 1`] = `
+<Fragment>
+  <styled.button
+    onClick={[Function]}
+  />
+  <styled.button
+    onClick={[Function]}
+  />
+</Fragment>
+`;
