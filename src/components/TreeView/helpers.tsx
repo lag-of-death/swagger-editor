@@ -9,7 +9,11 @@ const getErrors = getIssuesOfSeverity.bind(null, "error");
 const getWarnings = getIssuesOfSeverity.bind(null, "warn");
 
 const getDiagnosticsForPath = (diagnostics: IRuleResult[], givenPath: string[]) =>
-  diagnostics.filter(({path}: IRuleResult) => path.join(",").startsWith(givenPath.join(",")));
+  diagnostics.filter(({path}: IRuleResult) => {
+    return givenPath.every((p, i) => {
+      return p === path[i];
+    });
+  });
 
 const getErrorsAndWarningsForPath = (diagnostics: IRuleResult[], path: string[]) => {
   const diagnosticsForPath = getDiagnosticsForPath(diagnostics, path);
