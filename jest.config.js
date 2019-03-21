@@ -1,7 +1,7 @@
 module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
-  collectCoverageFrom : ["src/**/*.tsx"],
+  collectCoverageFrom : ["src/**/*.tsx", "!src/index.tsx"],
   moduleFileExtensions: ["js", "ts", "tsx"],
   snapshotSerializers: ["enzyme-to-json/serializer"],
   setupFilesAfterEnv: ["<rootDir>enzyme.config.js"],
