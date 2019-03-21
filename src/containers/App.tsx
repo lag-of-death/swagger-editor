@@ -51,7 +51,7 @@ const Editor = styled.div`
   flex-basis: 0;
 `;
 
-const Appz = styled.div`
+const Container = styled.div`
   display: flex;
   flex-grow: 1;
   height: 100%;
@@ -75,8 +75,7 @@ const App = (
   const hasIssues = !!issues.length;
 
   return (
-    <Appz>
-
+    <Container>
       <TreeViewContainer>
         <TreeView
           spec={spec}
@@ -93,8 +92,7 @@ const App = (
           value={text || JSON.stringify(spec, null, 2)}
           onChange={onChange}/>
       </Editor>
-    </Appz>
-
+    </Container>
   );
 };
 
