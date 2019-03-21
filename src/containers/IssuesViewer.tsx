@@ -38,8 +38,7 @@ export const IssuesViewer = ({issues}: { issues: Array<{ message: string, path: 
   return (
     <Issues hasIssues={hasIssues}>{
       hasIssues
-        ? <div>{toDivs(issues)}
-        </div>
+        ? <div>{toDivs(issues)}</div>
         : <div>CLICK ON A DOT TO LEARN ABOUT ISSUES...</div>
     }</Issues>
   );
