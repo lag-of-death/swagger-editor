@@ -1,8 +1,8 @@
 import { IRuleResult } from "@stoplight/spectral";
 import * as React from "react";
 import styled from "styled-components";
+import IssuesIndicators from "../../containers/IssuesIndicators";
 import Branch from "../Branch";
-import IssuesIndicators from "../IssuesIndicators";
 import Leaf from "../Leaf";
 import { getErrorsAndWarningsForPath, isObjectOrArray } from "./helpers";
 import { ISpecPart, ITreeViewProps } from "./interfaces";

@@ -3,7 +3,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { displayIssues } from "../actions";
-import { dotSize } from "./shared";
+import { dotSize } from "../components/shared";
 
 const issues = `
   border-radius: 360px;
