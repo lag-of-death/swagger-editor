@@ -18,7 +18,7 @@ const padding = "padding: 6px;";
 
 const Errors = styled.div<{ hasIssues: boolean }>`
   display: flex;
-  justify-content: center;
+  justify-content: ${({hasIssues}) => hasIssues ? "initial" : "center"};
   align-items: ${({hasIssues}) => hasIssues ? "initial" : "center"};
   opacity: ${({hasIssues}) => hasIssues ? 1 : 0.1};
   flex-grow: 0;
