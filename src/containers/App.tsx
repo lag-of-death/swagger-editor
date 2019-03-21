@@ -4,11 +4,11 @@ import { connect } from "react-redux";
 import { updateText } from "../actions";
 import { TreeView } from "../components/TreeView";
 import { ISpecPart } from "../components/TreeView/interfaces";
+import { Store } from "../shared";
 import { diagnose } from "../util/linting";
 import IssuesViewer from "./IssuesViewer";
 
 type Event = { target: { value: string } };
-type State = { spec: ISpecPart, text: string, issues: IRuleResult[] };
 
 import styled from "styled-components";
 import { border, borderRadius, boxShadow, padding } from "./shared";
@@ -70,7 +70,7 @@ export const App = (
   );
 };
 
-export default connect((state: State) => {
+export default connect((state: Store) => {
   return {
     issues: state.issues,
     spec: state.spec,

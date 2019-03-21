@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import { displayIssues } from "../actions";
 import { dotSize } from "../components/shared";
+import { Issues } from "../shared";
 
 const issues = `
   border-radius: 360px;
@@ -25,9 +26,9 @@ const Warnings = styled.button`
 `;
 
 interface IIssuesIndicatorsProps {
-  warnings: Array<{ message: string, path: string[] }>;
-  errors: Array<{ message: string, path: string[] }>;
-  onClick: (msg: Array<{ message: string, path: string[] }>) => null;
+  warnings: Issues;
+  errors: Issues;
+  onClick: (Issues: Issues) => null;
 }
 
 export const IssuesIndicators = ({warnings, errors, onClick}: IIssuesIndicatorsProps) => {
@@ -47,8 +48,8 @@ export const IssuesIndicators = ({warnings, errors, onClick}: IIssuesIndicatorsP
 
 export default connect(() => ({}), (dispatch) => {
   return {
-    onClick: (msg: Array<{ message: string, path: string[] }>) => {
-      dispatch(displayIssues(msg));
+    onClick: (warningsOrErrors: Issues) => {
+      dispatch(displayIssues(warningsOrErrors));
     },
   };
 })(IssuesIndicators);

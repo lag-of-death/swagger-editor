@@ -1,12 +1,10 @@
-import { IRuleResult } from "@stoplight/spectral";
 import { CHANGE_EDITOR_TEXT, DISPLAY_ISSUES } from "../actions";
 import { ISpecPart } from "../components/TreeView/interfaces";
+import { Store } from "../shared";
 
 interface IActionHandlers {
   [key: string]: (spec: ISpecPart, payload: any, text?: any) => Store;
 }
-
-type Store = { spec: ISpecPart, text: string, issues?: IRuleResult[] };
 
 const handleTextChange = (spec: ISpecPart, payload: string) => {
   try {

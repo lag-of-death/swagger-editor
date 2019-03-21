@@ -1,6 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import { Issues as IssuesType } from "../shared";
 import { border, borderRadius, boxShadow, padding } from "./shared";
 
 const Issues = styled.div<{ hasIssues: boolean }>`
@@ -20,19 +21,19 @@ const Issues = styled.div<{ hasIssues: boolean }>`
   word-break: break-word;
 `;
 
-const toDivs = (issues: Array<{ message: string, path: string[] }>) => {
-  return issues.map((msg) => {
-    const path = msg.path.join(".");
+const toDivs = (issues: IssuesType) => {
+  return issues.map((issue) => {
+    const path = issue.path.join(".");
 
     return (
       <div key={path}>
-        <b>{path}</b>: {msg.message}
+        <b>{path}</b>: {issue.message}
       </div>
     );
   });
 };
 
-export const IssuesViewer = ({issues}: { issues: Array<{ message: string, path: string[] }> }) => {
+export const IssuesViewer = ({issues}: { issues: IssuesType }) => {
   const hasIssues = issues && !!issues.length;
 
   return (
@@ -44,7 +45,7 @@ export const IssuesViewer = ({issues}: { issues: Array<{ message: string, path: 
   );
 };
 
-export default connect((state: { issues: Array<{ message: string, path: string[] }> }) => {
+export default connect((state: { issues: IssuesType }) => {
   return {
     issues: state.issues,
   };
