@@ -5,7 +5,7 @@ import { App } from "./App";
 describe("App", () => {
   test("rendering", () => {
     const component = shallow(
-      <App text="some text" onChange={() => null} issues={[]} spec={({})}/>,
+      <App text="some text" isJSONValid={true} onChange={() => null} issues={[]} spec={({})}/>,
     );
 
     expect(component).toMatchSnapshot();

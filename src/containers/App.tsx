@@ -10,17 +10,28 @@ import IssuesViewer from "./IssuesViewer";
 
 type Event = { target: { value: string } };
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { border, borderRadius, boxShadow, padding } from "./shared";
+
+const shared = css`
+  ${border}
+  ${borderRadius}
+  ${boxShadow}
+`;
+
+const JSONValidity = styled.div`
+  ${shared}
+  ${padding}
+  margin: 10px;
+  text-align: center;
+`;
 
 const TextEditor = styled.textarea`
   ${padding}
   display: flex;
   flex-grow: 20;
   margin: 10px;
-  ${border}
-  ${borderRadius}
-  ${boxShadow}
+  ${shared}
 `;
 
 const Editor = styled.div`
@@ -43,15 +54,15 @@ const TreeViewContainer = styled.div`
   flex-shrink: 1;
   flex-basis: 0;
   margin: 10px;
-  ${border}
-  ${borderRadius}
-  ${boxShadow}
+  ${shared}
 `;
 
 export const App = (
-  {spec, issues, text, onChange}:
-    { onChange: (evt: Event) => null, text: string, issues: IRuleResult[], spec: ISpecPart },
+  {spec, issues, text, onChange, isJSONValid}:
+    { onChange: (evt: Event) => null, text: string, issues: IRuleResult[], spec: ISpecPart, isJSONValid: boolean },
 ) => {
+  const stringifiedJSON = JSON.stringify(spec, null, 2);
+
   return (
     <Container>
       <TreeViewContainer>
@@ -62,8 +73,11 @@ export const App = (
 
       <Editor>
         <IssuesViewer/>
+        <JSONValidity>
+          {isJSONValid ? "JSON VALID" : "JSON NOT VALID"}
+        </JSONValidity>
         <TextEditor
-          value={text || JSON.stringify(spec, null, 2)}
+          value={text ? text : (Object.keys(spec).length ? stringifiedJSON : "")}
           onChange={onChange}/>
       </Editor>
     </Container>
@@ -72,6 +86,7 @@ export const App = (
 
 export default connect((state: Store) => {
   return {
+    isJSONValid: state.isJSONValid,
     issues: state.issues,
     spec: state.spec,
     text: state.text,

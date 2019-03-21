@@ -13,11 +13,13 @@ const handleTextChange = (spec: ISpecPart, payload: string) => {
       : spec;
 
     return {
+      isJSONValid: true,
       spec: specAsObj,
       text: payload,
     };
   } catch (e) {
     return {
+      isJSONValid: false,
       spec,
       text: payload,
     };
@@ -25,18 +27,30 @@ const handleTextChange = (spec: ISpecPart, payload: string) => {
 };
 
 const actions = {
-  [CHANGE_EDITOR_TEXT]: (spec, payload) => handleTextChange(spec, payload),
+  [CHANGE_EDITOR_TEXT]: (spec, payload) => {
+    const updatedStore = (!payload)
+      ? {
+        isJSONValid: false,
+        spec: {},
+        text: "",
+      }
+      : handleTextChange(spec, payload);
+
+    return {...updatedStore, issues: []};
+  },
   [DISPLAY_ISSUES]: (spec, payload, text) => ({issues: payload, spec, text}),
 } as IActionHandlers;
 
 const reducer = (
-  {spec, text}: { spec: ISpecPart, text: string },
+  store: Store,
   action: { type: string, payload?: any },
 ): Store => {
   const actionType = action.type;
   const actionHandler = actions[actionType];
 
-  return actionHandler ? actionHandler(spec, action.payload, text) : {spec, text: "", issues: []};
+  return actionHandler
+    ? {...store, ...actionHandler(store.spec, action.payload, store.text)}
+    : store;
 };
 
 export default reducer;

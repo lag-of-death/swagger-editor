@@ -6,7 +6,9 @@ import petstore = require("../spec/petstore.oas2.json");
 import App from "./containers/App";
 import rootReducer from "./reducers/";
 
-const store = createStore(rootReducer, {spec: petstore as any, text: ""});
+import { Store } from "./shared";
+
+const store = createStore(rootReducer, {spec: petstore as any, text: "", isJSONValid: true} as Store);
 
 ReactDOM.render(
   <Provider store={store}>

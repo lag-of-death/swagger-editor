@@ -63,6 +63,9 @@ exports[`App rendering 1`] = `
   </styled.div>
   <styled.div>
     <Connect(Component) />
+    <styled.div>
+      JSON VALID
+    </styled.div>
     <styled.textarea
       onChange={[Function]}
       value="some text"
