@@ -1,8 +1,7 @@
-import { IRuleResult } from "@stoplight/spectral";
 import * as React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import {border, borderRadius, boxShadow, padding} from "./shared";
+import { border, borderRadius, boxShadow, padding } from "./shared";
 
 const Issues = styled.div<{ hasIssues: boolean }>`
   display: flex;
@@ -21,19 +20,32 @@ const Issues = styled.div<{ hasIssues: boolean }>`
   word-break: break-word;
 `;
 
-export const IssuesViewer = ({issues}: any) => {
+const toDivs = (issues: Array<{ message: string, path: string[] }>) => {
+  return issues.map((msg) => {
+    const path = msg.path.join(".");
+
+    return (
+      <div key={path}>
+        <b>{path}</b>: {msg.message}
+      </div>
+    );
+  });
+};
+
+export const IssuesViewer = ({issues}: { issues: Array<{ message: string, path: string[] }> }) => {
   const hasIssues = issues && !!issues.length;
 
   return (
     <Issues hasIssues={hasIssues}>{
       hasIssues
-        ? <div>{issues.map((msg: IRuleResult) => <div><b>{msg.path.join(".")}</b>: {msg.message}</div>)}</div>
+        ? <div>{toDivs(issues)}
+        </div>
         : <div>CLICK ON A DOT TO LEARN ABOUT ISSUES...</div>
     }</Issues>
   );
 };
 
-export default connect((state: any) => {
+export default connect((state: { issues: Array<{ message: string, path: string[] }> }) => {
   return {
     issues: state.issues,
   };
