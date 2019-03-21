@@ -22,7 +22,7 @@ const Errors = styled.div<{ hasIssues: boolean }>`
 `;
 
 export const IssuesViewer = ({issues}: any) => {
-  const hasIssues = !!issues.length;
+  const hasIssues = issues && !!issues.length;
 
   return (
     <Errors hasIssues={hasIssues}>{
