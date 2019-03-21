@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import {border, borderRadius, boxShadow, padding} from "./shared";
 
-const Errors = styled.div<{ hasIssues: boolean }>`
+const Issues = styled.div<{ hasIssues: boolean }>`
   display: flex;
   justify-content: ${({hasIssues}) => hasIssues ? "initial" : "center"};
   align-items: ${({hasIssues}) => hasIssues ? "initial" : "center"};
@@ -25,11 +25,11 @@ export const IssuesViewer = ({issues}: any) => {
   const hasIssues = issues && !!issues.length;
 
   return (
-    <Errors hasIssues={hasIssues}>{
+    <Issues hasIssues={hasIssues}>{
       hasIssues
         ? <div>{issues.map((msg: IRuleResult) => <div><b>{msg.path.join(".")}</b>: {msg.message}</div>)}</div>
         : <div>CLICK ON A DOT TO LEARN ABOUT ISSUES...</div>
-    }</Errors>
+    }</Issues>
   );
 };
 
