@@ -1,1 +1,1 @@
-Available at: https://swagger-validator.herokuapp.com/.
+OAS doc validator.
