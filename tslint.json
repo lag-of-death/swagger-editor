@@ -1,10 +1,18 @@
 {
   "defaultSeverity": "error",
   "extends": [
-    "tslint:recommended"
+    "tslint:recommended",
+    "tslint:latest",
+    "tslint-react",
+    "tslint-react-a11y"
   ],
   "jsRules": {},
   "rules": {
+    "no-object-literal-type-assertion": false,
+    "jsx-no-multiline-js": false,
+    "jsx-wrap-multiline": false,
+    "jsx-alignment": false,
+    "jsx-no-lambda": false,
     "no-console": false,
     "interface-over-type-literal": false
   },

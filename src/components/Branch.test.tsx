@@ -1,13 +1,20 @@
-import { shallow } from "enzyme";
+import {shallow} from "enzyme";
 import * as React from "react";
 import Branch from "./Branch";
 
-describe("Branch", () => {
-  test("rendering", () => {
-    const component = shallow(
-      <Branch render={() => []} labelKey="testLabelKey" renderIssuesIndicators={() => <div></div>}/>,
-    );
+function render(): [] {
+    return [];
+}
 
-    expect(component).toMatchSnapshot();
-  });
+function renderIssuesIndicators() {
+    return <div/>;
+}
+
+describe("Branch", () => {
+    test("rendering", () => {
+        const component = shallow(
+            <Branch render={render} labelKey="testLabelKey" renderIssuesIndicators={renderIssuesIndicators}/>,
+        );
+        expect(component).toMatchSnapshot();
+    });
 });

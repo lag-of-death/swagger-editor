@@ -1,4 +1,5 @@
 import { Spectral } from "@stoplight/spectral";
+// tslint:disable-next-line:no-submodule-imports
 import { oas2Functions, oas2Rules } from "@stoplight/spectral/rulesets/oas2";
 
 // usage: diagnose(require('../../spec/petstore.oas2.json'))

@@ -1,11 +1,15 @@
-import { shallow } from "enzyme";
+import {shallow} from "enzyme";
 import * as React from "react";
 import Leaf from "./Leaf";
 
-describe("Leaf", () => {
-  test("rendering", () => {
-    const component = shallow(<Leaf labelKey="testLabelKey" renderIssuesIndicators={() => <div></div>}/>);
+function renderIssuesIndicators() {
+    return <div/>;
+}
 
-    expect(component).toMatchSnapshot();
-  });
+describe("Leaf", () => {
+    test("rendering", () => {
+        const component = shallow(<Leaf labelKey="testLabelKey" renderIssuesIndicators={renderIssuesIndicators}/>);
+
+        expect(component).toMatchSnapshot();
+    });
 });
